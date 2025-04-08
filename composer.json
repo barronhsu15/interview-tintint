@@ -11,5 +11,7 @@
             "email": "barron.hsu.15@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.4"
+    }
 }

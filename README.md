@@ -2,10 +2,16 @@
 
 ## 開發指南
 
+### 啟動本地開發環境
+
+```shell
+docker-compose up -d
+```
+
 ### 進入容器環境
 
 ```shell
-docker-compose run --rm php
+docker-compose exec -it php sh
 ```
 
 ### 安裝 PHP 依賴套件

@@ -67,6 +67,7 @@ class OrderRepository
          *  category: string,
          *  quantity: int,
          *  price: int,
+         *  item_create_at: string,
         * }>>
          */
         $rowsByOrderId = array_reduce($rows, function ($accumulator, $row) {
@@ -92,6 +93,7 @@ class OrderRepository
                         $row['category'],
                         $row['quantity'],
                         $row['price'],
+                        new \DateTimeImmutable($row['item_create_at']),
                     );
                 }, $rows),
             );
@@ -113,6 +115,7 @@ class OrderRepository
      *  category: string,
      *  quantity: int,
      *  price: int,
+     *  item_create_at: string,
      * }>
      *
      * @throws DatabaseExceptionInterface
@@ -131,7 +134,8 @@ class OrderRepository
             oi1.product_name AS product_name,
             oi1.category AS category,
             oi1.quantity AS quantity,
-            oi1.price AS price
+            oi1.price AS price,
+            oi1.create_at AS item_create_at
         FROM
             orders AS o1
         LEFT JOIN

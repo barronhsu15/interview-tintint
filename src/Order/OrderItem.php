@@ -14,6 +14,7 @@ class OrderItem
      * @param string $category 類別
      * @param int $quantity 數量
      * @param int $price 售價
+     * @param \DateTimeImmutable $createAt,
      */
     public function __construct(
         public readonly string $itemId,
@@ -22,5 +23,6 @@ class OrderItem
         public readonly string $category,
         public readonly int $quantity,
         public readonly int $price,
+        public readonly \DateTimeImmutable $createAt,
     ) {}
 }

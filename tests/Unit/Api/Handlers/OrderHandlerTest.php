@@ -108,16 +108,16 @@ class OrderHandlerTest extends TestCase
 
         $this->orderService->shouldReceive('getOrdersByDatetimeAndCategory')->andReturn([
             new Order('order_id_1', new \DateTimeImmutable('2025-01-01 01:23:45'), 123, [
-                new OrderItem('item_id_1', 'order_id_1', 'product_name_1', 'category_1', 1, 123)
+                new OrderItem('item_id_1', 'order_id_1', 'product_name_1', 'category_1', 1, 123, new \DateTimeImmutable('2025-01-01 01:23:45')),
             ]),
             new Order('order_id_2', new \DateTimeImmutable('2025-01-02 02:34:56'), 456, [
-                new OrderItem('item_id_2', 'order_id_2', 'product_name_2', 'category_1', 2, 123),
-                new OrderItem('item_id_3', 'order_id_2', 'product_name_3', 'category_1', 3, 70),
+                new OrderItem('item_id_2', 'order_id_2', 'product_name_2', 'category_1', 2, 123, new \DateTimeImmutable('2025-01-02 02:34:56')),
+                new OrderItem('item_id_3', 'order_id_2', 'product_name_3', 'category_1', 3, 70, new \DateTimeImmutable('2025-01-02 02:34:56')),
             ]),
             new Order('order_id_3', new \DateTimeImmutable('2025-01-03 03:45:00'), 789, [
-                new OrderItem('item_id_4', 'order_id_3', 'product_name_4', 'category_1', 4, 123),
-                new OrderItem('item_id_5', 'order_id_3', 'product_name_5', 'category_2', 5, 21),
-                new OrderItem('item_id_6', 'order_id_3', 'product_name_6', 'category_2', 6, 32),
+                new OrderItem('item_id_4', 'order_id_3', 'product_name_4', 'category_1', 4, 123, new \DateTimeImmutable('2025-01-03 03:45:00')),
+                new OrderItem('item_id_5', 'order_id_3', 'product_name_5', 'category_2', 5, 21, new \DateTimeImmutable('2025-01-03 03:45:00')),
+                new OrderItem('item_id_6', 'order_id_3', 'product_name_6', 'category_2', 6, 32, new \DateTimeImmutable('2025-01-03 03:45:00')),
             ]),
         ]);
 

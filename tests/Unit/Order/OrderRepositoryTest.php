@@ -53,6 +53,7 @@ class OrderRepositoryTest extends TestCase
             string $category,
             int $quantity,
             int $price,
+            string $itemCreateAt,
         ) {
             return [
                 'order_id' => $orderId,
@@ -63,6 +64,7 @@ class OrderRepositoryTest extends TestCase
                 'category' => $category,
                 'quantity' => $quantity,
                 'price' => $price,
+                'item_create_at' => $itemCreateAt,
             ];
         };
 
@@ -70,20 +72,20 @@ class OrderRepositoryTest extends TestCase
         $to = new \DateTimeImmutable('2025-01-31 23:59:59');
 
         $rows = [
-            $createRow('order_id_1', '2025-01-01 01:23:45', 123, 'item_id_1', 'product_name_1', 'category_1', 1, 123),
-            $createRow('order_id_2', '2025-01-02 02:34:56', 456, 'item_id_2', 'product_name_1', 'category_1', 2, 123),
-            $createRow('order_id_2', '2025-01-02 02:34:56', 456, 'item_id_3', 'product_name_2', 'category_2', 3, 70),
+            $createRow('order_id_1', '2025-01-01 01:23:45', 123, 'item_id_1', 'product_name_1', 'category_1', 1, 123, '2025-01-01 01:23:45'),
+            $createRow('order_id_2', '2025-01-02 02:34:56', 456, 'item_id_2', 'product_name_1', 'category_1', 2, 123, '2025-01-02 02:34:56'),
+            $createRow('order_id_2', '2025-01-02 02:34:56', 456, 'item_id_3', 'product_name_2', 'category_2', 3, 70, '2025-01-02 02:34:56'),
         ];
 
         $this->db->shouldReceive('select')->andReturn($rows);
 
         $this->assertEquals([
             new Order('order_id_1', new \DateTimeImmutable('2025-01-01 01:23:45'), 123, [
-                new OrderItem('item_id_1', 'order_id_1', 'product_name_1', 'category_1', 1, 123),
+                new OrderItem('item_id_1', 'order_id_1', 'product_name_1', 'category_1', 1, 123, new \DateTimeImmutable('2025-01-01 01:23:45')),
             ]),
             new Order('order_id_2', new \DateTimeImmutable('2025-01-02 02:34:56'), 456, [
-                new OrderItem('item_id_2', 'order_id_2', 'product_name_1', 'category_1', 2, 123),
-                new OrderItem('item_id_3', 'order_id_2', 'product_name_2', 'category_2', 3, 70),
+                new OrderItem('item_id_2', 'order_id_2', 'product_name_1', 'category_1', 2, 123, new \DateTimeImmutable('2025-01-02 02:34:56')),
+                new OrderItem('item_id_3', 'order_id_2', 'product_name_2', 'category_2', 3, 70, new \DateTimeImmutable('2025-01-02 02:34:56')),
             ]),
         ], $this->repository->getOrdersByDatetimeAndCategory($from, $to, 'category'));
 

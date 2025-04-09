@@ -14,7 +14,7 @@ class OrderTest extends TestCase
     public function testProperties(): void
     {
         $orderDate = new \DateTimeImmutable();
-        $orderItems = [new OrderItem('item_id', 'order_id', 'product_name', 'category', 123, 456)];
+        $orderItems = [new OrderItem('item_id', 'order_id', 'product_name', 'category', 123, 456, new \DateTimeImmutable())];
 
         $order = new Order('order_id', $orderDate, 123, $orderItems);
 

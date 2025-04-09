@@ -1,0 +1,20 @@
+{
+    "name": "barronhsu15/interview-tintint",
+    "autoload": {
+        "psr-4": {
+            "Barronhsu15\\InterviewTintint\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Barron Hsu",
+            "email": "barron.hsu.15@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12.1"
+    }
+}

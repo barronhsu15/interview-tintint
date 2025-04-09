@@ -1,0 +1,8 @@
+FROM php:8.4-alpine
+
+COPY --from=composer:2.8.8 /usr/bin/composer /usr/bin/composer
+
+RUN apk add autoconf g++ make \
+    && pecl install pcov \
+    && docker-php-ext-enable pcov \
+    && apk del autoconf g++ make

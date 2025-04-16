@@ -36,7 +36,7 @@ class OrderRepository
             'function' => __FUNCTION__,
             'from' => $from,
             'to' => $to,
-            'category' => 'category',
+            'category' => $category,
         ]);
 
         $rows = null;
